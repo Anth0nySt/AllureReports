@@ -18,17 +18,21 @@ public class AllureReportsTest {
     void allureReportsTest() {
         SelenideLogger.addListener("allure", new AllureSelenide());
         open("https://github.com/Anth0nySt/AllureReports");
-        $("#issues-tab").shouldBe(Condition.visible);
+        $("#issues-tab").click();
+        $(".application-main ").shouldHave(Condition.text("Issue1"));
     }
 
     @Test
     void allureReportsTestWithLambda() {
         SelenideLogger.addListener("allure", new AllureSelenide());
         step("Open remote repository", () -> {
+            open("https://github.com/Anth0nySt/AllureReports");
         });
-        open("https://github.com/Anth0nySt/AllureReports");
-        step("Check issues tab", () -> {
-            $("#issues-tab").shouldBe(Condition.visible);
+        step("Click issues tab",() -> {
+            $("#issues-tab").click();
+        });
+        step("Check issue number", () -> {
+            $(".application-main ").shouldHave(Condition.text("Issue1"));
         });
         Allure.getLifecycle().addAttachment(
                 "Page Source",
@@ -43,7 +47,7 @@ public class AllureReportsTest {
         SelenideLogger.addListener("allure", new AllureSelenide());
         WebSteps steps = new WebSteps();
         steps.openBrowserPage();
-        steps.attachScreenshot();
+        steps.openIssues();
         steps.shouldSeeIssue();
     }
 }

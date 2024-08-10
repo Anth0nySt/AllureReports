@@ -16,15 +16,19 @@ public class WebSteps {
         open("https://github.com/Anth0nySt/AllureReports");
 
     }
+    @Step("Click issues tab")
+    public void openIssues() {
+        $("#issues-tab").click();
+    }
 
     @Attachment(value = "Screenshot", type = "image/jpg", fileExtension = "jpg")
     public byte[] attachScreenshot() {
         return ((TakesScreenshot) WebDriverRunner.getWebDriver()).getScreenshotAs(OutputType.BYTES);
     }
 
-    @Step("Check issues tab")
+    @Step("Check issue number")
     public void shouldSeeIssue() {
-        $("#issues-tab").shouldBe(Condition.visible);
+        $(".application-main ").shouldHave(Condition.text("Issue1"));
         attachScreenshot();
     }
 }
