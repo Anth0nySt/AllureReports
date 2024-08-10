@@ -18,7 +18,7 @@ public class AllureReportsTest {
     void allureReportsTest() {
         SelenideLogger.addListener("allure", new AllureSelenide());
         open("https://github.com/Anth0nySt/AllureReports");
-            $("#issues-tab").shouldBe(Condition.visible);
+        $("#issues-tab").shouldBe(Condition.visible);
     }
 
     @Test

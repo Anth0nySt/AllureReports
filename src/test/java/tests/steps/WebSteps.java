@@ -16,13 +16,14 @@ public class WebSteps {
         open("https://github.com/Anth0nySt/AllureReports");
 
     }
+
     @Attachment(value = "Screenshot", type = "image/jpg", fileExtension = "jpg")
-    public byte[] attachScreenshot () {
+    public byte[] attachScreenshot() {
         return ((TakesScreenshot) WebDriverRunner.getWebDriver()).getScreenshotAs(OutputType.BYTES);
     }
 
     @Step("Check issues tab")
-    public void shouldSeeIssue(){
+    public void shouldSeeIssue() {
         $("#issues-tab").shouldBe(Condition.visible);
         attachScreenshot();
     }
